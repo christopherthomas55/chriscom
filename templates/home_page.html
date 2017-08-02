@@ -1,0 +1,36 @@
+{% extends "skeleton.html" %}
+{% set active_page = url_for('home_page') %}
+
+{% block styles %}
+<link href="{{ url_for('static',filename='css/home-page.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+<!-- clock, astros scores, fun buttons, top ten memes-->
+    <div id="sortable" class="container-fluid">
+    <div class="col-xs-6 col-sm-4 data-random ui-state-default"></div>
+    <div class="col-xs-6 col-sm-4 data-random ui-state-default"></div>
+    <div class="col-xs-6 col-sm-4 data-random ui-state-default"></div>
+    <div class="col-xs-6 col-sm-4 data-random ui-state-default"></div>
+    <div class="col-xs-6 col-sm-4 data-random ui-state-default"></div>
+    <div class="col-xs-6 col-sm-4 data-random ui-state-default"></div>
+    <div class="col-xs-6 col-sm-4 data-random ui-state-default"></div>
+    <div class="col-xs-6 col-sm-4 data-random ui-state-default"></div>
+    <div class="col-xs-6 col-sm-4 data-random ui-state-default"></div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{{ url_for('static',filename='js/home-page.js')}}" type="text/javascript"></script>
+    <script src="{{ url_for('static',filename='js/jquery-ui.js')}}"></script>
+
+    <script>
+  $( function() {
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
+  } );
+  </script>
+{% endblock %}

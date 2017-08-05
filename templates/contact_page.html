@@ -1,3 +1,35 @@
 {% extends "skeleton.html" %}
 {% set active_page = url_for('contact_page') %}
-{% block body %}{% endblock %}
+{% block body %}
+
+
+<div class="container" >
+
+<div class="form-group row" style="padding-top: 1em">
+    <p>To contact me, send me an email at
+<a href="mailto:christopherthomas55@gmail.com?Subject=Nice%20Website!" target="_top">christopherthomas55@gmail.com</a>
+</p>
+    <p>Or just leave a comment below! I will read everything, but I don't really have a way of responding to you if you don't leave an email.</p>
+</div>
+
+
+<form id="contact_form" action="{{ url_for('submit_comment')}}" method="post">
+    <div class="form-group row">
+        <div class="col-md-3">
+            <label for="User_Name">Your Name:</label>
+            <input class="form-control" type="text" id="User_Name" name="User_Name">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="Comment">Leave me a message:</label>
+        <div class="col">
+            <textarea class="form-control" id="Comment" name="Comment" placeholder="This gets sent to my email anyways, you might as well use the email link instead."></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <button type="submit">Submit</button>
+    </div>
+</form>
+</div>
+{% endblock %}

@@ -14,8 +14,8 @@
     <title>Chris.com</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
-
+    <link href="{{ url_for('static',filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/skeleton-page.css')}}" rel="stylesheet">
 
     {% block styles %}{% endblock %}
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -40,7 +40,6 @@
                 ] -%}
   {% set active_page = active_page|default('/') -%}
 
-
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -57,6 +56,16 @@
       </div>
     </nav>
   {% block body %}{% endblock %}
+
+  {% set messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flashed col-md-4" style="border-radius:2%">
+            {% for message in messages %}
+                <p align="center">{{ message }}</p>
+                {% endfor %}
+            </div>
+        <script type="text/javascript">$(document).onload(function(){$('.flashed').fadeOut()})</script>
+        {% endif %}
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -65,5 +74,8 @@
     <script src="{{ url_for('static', filename='js/bootstrap.min.js')}}" type="text/javascript"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   {% block scripts %}{%  endblock %}
+  {% if messages %}
+  <script type="text/javascript">$('.flashed').fadeOut(3000)</script>
+  {% endif %}
   </body>
 </html>

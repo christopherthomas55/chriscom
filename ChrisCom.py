@@ -4,12 +4,9 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
 from smtplib import SMTP
 from email.mime.text import MIMEText
 
-<<<<<<< HEAD
-with open('/home/pi/chriscom/emailinfo','r') as f:
-=======
+
 with open('home/pi/chriscom/emailinfo','r') as f:
 #with open('C:\\Users\\chris_000\\PycharmProjects\\ChrisCom\\emailinfo', 'r') as f:
->>>>>>> 50944139eafdf608fe1f12262deceb5b976641ff
     email_info=f.readlines()
     email_user = email_info[0]
     email_pwd=email_info[1]

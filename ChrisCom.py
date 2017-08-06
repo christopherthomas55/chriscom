@@ -3,14 +3,15 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
 
 from smtplib import SMTP
 from email.mime.text import MIMEText
+from time import time
 
-
-with open('/home/pi/chriscom/emailinfo','r') as f:
-#with open('C:\\Users\\chris_000\\PycharmProjects\\ChrisCom\\emailinfo', 'r') as f:
+#with open('/home/pi/chriscom/emailinfo','r') as f:
+with open('C:\\Users\\chris_000\\PycharmProjects\\ChrisCom\\emailinfo', 'r') as f:
     email_info=f.readlines()
     email_user = email_info[0]
     email_pwd=email_info[1]
 
+server_start_time = time()
 app = Flask(__name__)
 app.secret_key = 'some_secret_that_you_do_not_know'
 
@@ -18,7 +19,9 @@ app.secret_key = 'some_secret_that_you_do_not_know'
 @app.route('/')
 @app.route('/home')
 def home_page():
-    return render_template('home_page.html')
+    server_uptime = int(time()-server_start_time)
+    print(server_uptime)
+    return render_template('home_page.html', server_uptime=server_uptime)
 
 @app.route('/about')
 def about_page():

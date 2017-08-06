@@ -9,7 +9,14 @@
 
 <!-- clock, astros scores, fun buttons, top ten memes-->
     <div id="sortable" class="container-fluid">
-    <div class="col-xs-6 col-sm-4 data-random ui-state-default"></div>
+    <div class="col-xs-6 col-sm-4 data-random ui-state-default">
+        <h4>Server Stats</h4><br>
+        <ul>
+            <li>Current Time - <span id="clock"></span></li>
+            <li>Website Version Uptime - <span id ="uptime_clock"></span></li>
+            <li>Website Session Time - </li>
+            <li>Current Page Session Time - <span id ="user_clock"></span> </li>
+        </ul></div>
     <div class="col-xs-6 col-sm-4 data-random ui-state-default"></div>
     <div class="col-xs-6 col-sm-4 data-random ui-state-default"></div>
     <div class="col-xs-6 col-sm-4 data-random ui-state-default"></div>
@@ -24,8 +31,8 @@
 
 {% block scripts %}
 
-<script src="{{ url_for('static',filename='js/home-page.js')}}" type="text/javascript"></script>
     <script src="{{ url_for('static',filename='js/jquery-ui.js')}}"></script>
+    <script src="{{ url_for('static',filename='js/home-page.js')}}" type="text/javascript"></script>
 
     <script>
   $( function() {
@@ -33,4 +40,17 @@
     $( "#sortable" ).disableSelection();
   } );
   </script>
+   <script type="text/javascript">
+    var server_time = {{ server_uptime }};
+    var day = Math.floor(server_time/86400);
+    var hour = Math.floor((server_time%216000)/3600);
+    var min = Math.floor((server_time%3600)/60);
+    var sec = server_time%60;
+    var server_time_array=[day,hour,min,sec];
+    var user_time_array=[0,0,0,0];
+    window.setInterval(function(){
+        server_time_array=clockIncrement(server_time_array,'#uptime_clock');
+        user_time_array=clockIncrement(user_time_array, '#user_clock');
+    },1000);
+</script>
 {% endblock %}

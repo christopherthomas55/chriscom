@@ -20,7 +20,7 @@ app.secret_key = 'some_secret_that_you_do_not_know'
 @app.route('/home')
 def home_page():
     server_uptime = int(time()-server_start_time)
-    return render_template('home_page.html', server_uptime=server_uptime, meme_url=open('../static/misc/meme_url.txt','r').read())
+    return render_template('home_page.html', server_uptime=server_uptime, meme_url=open('/home/pi/chriscom/static/misc/meme_url.txt','r').read())
    #return render_template('home_page.html', server_uptime=server_uptime, meme_url=open('C:/Users/chris_000/PycharmProjects/ChrisCom/static/misc/meme_url.txt','r').read())
 
 @app.route('/about')

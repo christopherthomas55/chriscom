@@ -5,8 +5,8 @@ from smtplib import SMTP
 from email.mime.text import MIMEText
 from time import time
 
-#with open('/home/pi/chriscom/emailinfo','r') as f:
-with open('C:\\Users\\chris_000\\PycharmProjects\\ChrisCom\\emailinfo', 'r') as f:
+with open('/home/chris_files/chriscom/emailinfo','r') as f:
+#with open('C:\\Users\\chris_000\\PycharmProjects\\ChrisCom\\emailinfo', 'r') as f:
     email_info=f.readlines()
     email_user = email_info[0]
     email_pwd=email_info[1]
@@ -20,7 +20,7 @@ app.secret_key = 'some_secret_that_you_do_not_know'
 @app.route('/home')
 def home_page():
     server_uptime = int(time()-server_start_time)
-    return render_template('home_page.html', server_uptime=server_uptime, meme_url=open('/home/pi/chriscom/static/misc/meme_url.txt','r').read())
+    return render_template('home_page.html', server_uptime=server_uptime, meme_url=open('/home/chris_files/chriscom/static/misc/meme_url.txt','r').read())
    #return render_template('home_page.html', server_uptime=server_uptime, meme_url=open('C:/Users/chris_000/PycharmProjects/ChrisCom/static/misc/meme_url.txt','r').read())
 
 @app.route('/about')
@@ -54,7 +54,7 @@ def submit_comment():
     msg['Subject']=message['User_Name'] +' sent you a message on chris.com'
     msg['From']=email_user
 
-    s.sendmail(email_user,email_user,msg.as_string())
+    s.sendmail(email_user,'christopherthomas55@gmail.com',msg.as_string())
     flash('Message submitted succesfully!')
     return redirect(url_for('contact_page'))
 

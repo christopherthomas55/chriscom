@@ -10,4 +10,7 @@ def get_wholesome_meme():
         f.write(link)
 
 if __name__ =="__main__":
-    get_wholesome_meme()
+    try:
+        get_wholesome_meme()
+    except:
+        print("Reddit is being reddit again")

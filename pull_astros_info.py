@@ -24,7 +24,7 @@ def pull_score():
                 else:
                     half = 'Bottom '
                 game_status = half + inning
-            else:
+            except:
                 game_status = game['game_status']
             return {
                 'home': game['home_team'],

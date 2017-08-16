@@ -15,7 +15,7 @@ def pull_score():
         game=games[id]
         game_time = datetime.datetime.strptime(
             game['game_start_time'], '%I:%M%p')-datetime.timedelta(hours=1)
-        if game_time.hour > today.hour or(game_time.hour == today.hour and game_time.minute >= game_time.minute):
+        if today.hour > game_time.hour or(game_time.hour == today.hour and today.minute >= game_time.minute):
             try:
                 overview = mlb.game.overview(list(games.keys())[0])
                 inning = overview['inning']
@@ -73,5 +73,8 @@ def interpret_score(pulled_score):
     else:
         game_info.is_today = 1
         game_info.date_or_inning = pulled_score.get(
-            'game_status', pulled_score.get('game_start_time'))
+            'game_status')
+        if game_info.date_or_inning == None:
+            game_info.date_or_inning = pulled_score.get('game_start_time')
+    print(game_info.date_or_inning)
     return game_info

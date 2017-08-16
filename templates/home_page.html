@@ -18,8 +18,32 @@
         </ul></div>
     <div class="col-xs-6 col-sm-4 data-random ui-state-default">
          <h4 align ="center">Wholesome Meme of the Hour</h4><br>
-        <img src={{ meme_url}}></div>
-    <div class="col-xs-6 col-sm-4 data-random ui-state-default"></div>
+        <img src={{meme_url}}></div>
+    <div class="col-xs-6 col-sm-4 data-random ui-state-default">
+        {% if gameinfo.is_today %}
+            <table style="width:100%">
+            <caption>Today's Astros Game</caption>
+            <tr>
+            <th>Team</th>
+            <th>Score</th>
+            <th>Inning</th>
+            </tr>
+            <tr>
+                <td>Home: {{ gameinfo.home_team }}</td>
+                <td>{{ gameinfo.score.split('-')[0] }}</td>
+                <td rowspan="2">{{ gameinfo.date_or_inning }}</td>
+            </tr>
+            <tr>
+                <td>Away: {{ gameinfo.away_team }}</td>
+                <td>{{ gameinfo.score.split('-')[1] }}</td>
+            </tr>
+            </table>
+
+        {% else %}
+
+
+        {% endif %}
+    </div>
     <div class="col-xs-6 col-sm-4 data-random ui-state-default"></div>
     <div class="col-xs-6 col-sm-4 data-random ui-state-default"></div>
     <div class="col-xs-6 col-sm-4 data-random ui-state-default"></div>

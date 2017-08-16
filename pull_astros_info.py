@@ -75,6 +75,6 @@ def interpret_score(pulled_score):
         game_info.date_or_inning = pulled_score.get(
             'game_status')
         if game_info.date_or_inning == None:
-            game_info.date_or_inning = pulled_score.get('game_start_time')
+            game_info.date_or_inning = pulled_score.get('game_time')
     print(game_info.date_or_inning)
     return game_info

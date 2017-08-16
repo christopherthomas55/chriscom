@@ -34,12 +34,11 @@
   <body style="padding-top: 50px; background-color: #e3e3e3 ">
   {% set navigation_bar = [
                (url_for('about_page'), 'About me'),
-                (url_for('projects_page'),'Projects'),
                 (url_for('resume_page'), 'Resume'),
                 (url_for('contact_page'), 'Contact')
                 ] -%}
   {% set active_page = active_page|default('/') -%}
-
+  <!-- (url_for('projects_page'),'Projects'),-->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -57,6 +56,10 @@
               <li {%  if href == active_page %} class = 'active' {% endif %}>
                   <a href="{{href|e}}">{{ caption|e }}</a> </li>
           {% endfor %}
+              <li class="dropdown {% if active_page == url_for('projects_page') %}active{% endif %}">
+                      <a href="{{url_for('projects_page')}}" class = "dropdown-toggle" data-toggle="dropdown" role= "button" aria-haspopup="true" aria-expanded="false">Projects<span class="caret"></span></a><ul class = "dropdown-menu">
+                              <li><a href="{{url_for('stat_405')}}">R for Data Science - Class Project</a></li>
+                              <li><a href="https://github.com/christopherthomas55/chriscom">ChrisCom website (Github link)</a></li></ul></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

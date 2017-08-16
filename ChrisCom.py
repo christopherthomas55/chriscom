@@ -47,6 +47,9 @@ def projects_page():
 def resume_page():
     return render_template('resume_page.html')
 
+@app.route('/stat_405')
+def stat_405():
+    return render_template('stat_405.html')
 
 @app.route('/submit_comment', methods=['POST'])
 def submit_comment():
